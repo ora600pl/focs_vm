@@ -38,11 +38,9 @@ OPTIONS:
 
 
 ## Sample usage: 
-
+```bash
 [root@rapier-v focs_vm]# ./target/release/focs_vm --pid 10922 --memory-size $((6291456*1024)) --pattern '72 6f 6f 74 3a 24 36 24' -P 4
 Found map at the start offset = 140324162764800 	 end offset = 140330605215744
-
-
 
 Scanning memory from 140324162764800 to 140325773377536 in a separate thread
 Scanning memory from 140325773377536 to 140327383990272 in a separate thread
@@ -63,10 +61,10 @@ Length: 256 (0x100) bytes
 0090:   3a 39 39 39  39 39 3a 37  3a 3a 3a 0a  64 61 65 6d   :99999:7:::.daem
 00a0:   6f 6e 3a 2a  3a 31 38 33  30 37 3a 30  3a 39 39 39   on:*:18307:0:999
 00b0:   39 39 3a 37  3a 3a 3a 0a  61 64 6d 3a  2a 3a 31 38   99:7:::.adm:*:18
+00c0:   33 30 37 3a  30 3a 39 39  39 39 39 3a  37 3a 3a 3a   307:0:99999:7:::
 00d0:   0a 6c 70 3a  2a 3a 31 38  33 30 37 3a  30 3a 39 39   .lp:*:18307:0:99
 00e0:   39 39 39 3a  37 3a 3a 3a  0a 73 79 6e  63 3a 2a 3a   999:7:::.sync:*:
 00f0:   31 38 33 30  37 3a 30 3a  39 39 39 39  39 3a 37 3a   18307:0:99999:7:
 
 Scanned: 100 %
-
-
+```
