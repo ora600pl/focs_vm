@@ -49,8 +49,9 @@ fn scan_memory(pid: u64, scan_from: u64, scan_to: u64, pattern: String, buffer_t
 	let positions = scan(Cursor::new(buffer), &pattern).unwrap();
         if positions.len() > 0 {
             println!("\nFound {} positions in a chunk", positions.len());
-            for position in positions {
-                    println!("{:?}\n\t", buffer[(position as usize)..(position as usize+buffer_to_print)].hex_dump());
+            for p in positions {
+		    println!("Offset: {} \n", p+position as usize);
+                    println!("{:?}\n\t", buffer[(p as usize)..(p as usize+buffer_to_print)].hex_dump());
             }
         }
         position += 1_048_576;
