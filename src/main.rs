@@ -23,9 +23,13 @@ struct Args {
     #[clap(short, long)]
     pid: u64,
 
-    ///Pattern in hex to search for
+    ///HEX pattern to search for
     #[clap(default_value="FF", short, long)]
-    pattern: String,
+    hex_pattern: String,
+
+    ///STRING pattern in hex to search for
+    #[clap(default_value="0xFF", short, long)]
+    string_pattern: String,
 
     ///Parallel degree
     #[clap(default_value_t=4,short='P', long)]
@@ -101,6 +105,14 @@ fn watch_memory_offset(pid: u64, offset: u64) {
 
 }
 
+fn hexlify(p: String) -> String {
+    let buffer = p.as_bytes();
+    let mut hex_pattern: String = String::new();
+    for b in buffer {
+        hex_pattern = format!("{} {:02x}", hex_pattern, b);
+    }
+    hex_pattern
+}
 
 fn main() {
     let args = Args::parse();
@@ -109,7 +121,11 @@ fn main() {
             let mem_size = args.memory_size;
             
             let maps = get_process_maps(pid as Pid).unwrap();
-            let pattern = args.pattern;
+            let mut pattern = args.hex_pattern;
+
+            if args.string_pattern != "0xFF" {
+                pattern = hexlify(args.string_pattern);
+            }
 
             let mut scan_from: u64 = 0;
             let mut scan_to: u64 = 0;
